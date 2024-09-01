@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: time-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: time-api
+  template:
+    metadata:
+      labels:
+        app: time-api
+    spec:
+      containers:
+      - name: time-api
+        image: gcr.io/corded-evening-434319-k3/time-api:v1
+        ports:
+        - containerPort: 9792

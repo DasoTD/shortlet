@@ -1,0 +1,33 @@
+name: GKE Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Cloud SDK
+      uses: google-github-actions/setup-gcloud@master
+      with:
+        project_id: ${{ secrets.GCP_PROJECT_ID }}
+        service_account_key: ${{ secrets.GCP_SA_KEY }}
+
+    - name: Authenticate Docker
+      run: gcloud auth configure-docker
+
+    - name: Build the Docker image
+      run: docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/time-api:$GITHUB_SHA .
+
+    - name: Push the Docker image to GCR
+      run: docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/time-api:$GITHUB_SHA
+
+    - name: Deploy to GKE
+      run: |
+        kubectl set image deployment/time-api time-api=gcr.io/${{ secrets.GCP_PROJECT_ID }}/time-api:$GITHUB_SHA
