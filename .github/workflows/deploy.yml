@@ -20,7 +20,7 @@ jobs:
         service_account_key: ${{ secrets.GCP_SA_KEY }}
 
     - name: Authenticate Docker
-      run: gcloud auth configure-docker
+      run: gcloud auth configure-docker -y
 
     - name: Build the Docker image
       run: docker build -t gcr.io/corded-evening-434319-k3/time-api:$GITHUB_SHA .
