@@ -9,7 +9,7 @@ data "google_client_config" "default" {}
 
 data "google_container_cluster" "primary" {
   name     = "shortletapp-time-api-cluster"
-  location = "us-east1"
+  location = "us-east4"
 }
 
 

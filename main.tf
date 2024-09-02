@@ -1,11 +1,11 @@
 provider "google" {
   project = var.project_id
-  region  = "us-east1"
+  region  = "us-east4"
 }
 
 resource "google_container_cluster" "primary" {
   name     = "shortletapp-time-api-cluster"
-  location = "us-east1"
+  location = "us-east4"
 
   initial_node_count = 1
 
