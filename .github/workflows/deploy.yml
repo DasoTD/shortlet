@@ -25,6 +25,11 @@ jobs:
     - name: Build the Docker image
       run: docker build -t gcr.io/corded-evening-434319-k3/time-api:$GITHUB_SHA .
 
+  
+    - name: Configure Docker Client
+      run:  |-
+        gcloud auth configure-docker --quiet
+
     - name: Push the Docker image to GCR
       run: docker push gcr.io/corded-evening-434319-k3/time-api:$GITHUB_SHA
 
