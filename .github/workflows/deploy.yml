@@ -35,8 +35,8 @@ jobs:
       run: |
         gcloud auth configure-docker \
         us-east4-docker.pkg.dev
-        docker build -t gcr/corded-evening-434319-k3/time-api:$GITHUB_SHA .
-        docker push  gcr/corded-evening-434319-k3/time-api:$GITHUB_SHA
+        docker build -t gcr.io/corded-evening-434319-k3/time-api:$GITHUB_SHA .
+        docker push  gcr.io/corded-evening-434319-k3/time-api:$GITHUB_SHA
       
     # - name: Authenticate Docker
     #   run: gcloud auth configure-docker
@@ -63,3 +63,7 @@ jobs:
     #   gcloud container clusters get-credentials autopilot-cluster-1 --region us-central1
     #   sed -i "s/GOOGLE_PROJECT/$GOOGLE_PROJECT/g" resources.yaml
     #   kubectl apply -f resources.yaml
+
+
+
+    
