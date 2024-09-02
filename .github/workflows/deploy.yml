@@ -23,11 +23,11 @@ jobs:
       run: gcloud auth configure-docker
 
     - name: Build the Docker image
-      run: docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/time-api:$GITHUB_SHA .
+      run: docker build -t gcr.io/corded-evening-434319-k3/time-api:$GITHUB_SHA .
 
     - name: Push the Docker image to GCR
-      run: docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/time-api:$GITHUB_SHA
+      run: docker push gcr.io/corded-evening-434319-k3/time-api:$GITHUB_SHA
 
     - name: Deploy to GKE
       run: |
-        kubectl set image deployment/time-api time-api=gcr.io/${{ secrets.GCP_PROJECT_ID }}/time-api:$GITHUB_SHA
+        kubectl set image deployment/time-api time-api=gcr.io/corded-evening-434319-k3/time-api:$GITHUB_SHA
