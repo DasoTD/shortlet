@@ -34,8 +34,8 @@ jobs:
         GOOGLE_PROJECT: ${{ secrets.GCP_PROJECT_ID }}
       run: |
         gcloud auth configure-docker 
-        docker build -t gcr.io/corded-evening-434319-k3/time-api:$GITHUB_SHA .
-        docker push  gcr.io/corded-evening-434319-k3/time-api:$GITHUB_SHA
+        docker build -t gcr/corded-evening-434319-k3/time-api:$GITHUB_SHA .
+        docker push  gcr/corded-evening-434319-k3/time-api:$GITHUB_SHA
       
     # - name: Authenticate Docker
     #   run: gcloud auth configure-docker
