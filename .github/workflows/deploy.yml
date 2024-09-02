@@ -33,8 +33,7 @@ jobs:
       env:
         GOOGLE_PROJECT: ${{ secrets.GCP_PROJECT_ID }}
       run: |
-        gcloud auth configure-docker \
-        us-east4-docker.pkg.dev
+        gcloud auth configure-docker us-east4-docker.pkg.dev
         docker build -t gcr.io/corded-evening-434319-k3/time-api:$GITHUB_SHA .
         docker push  gcr.io/corded-evening-434319-k3/time-api:$GITHUB_SHA
       
